@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Authing 小程序扫码登录示例</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #authing__retry {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/authing-js-sdk@1.19.0/dist/authing-js-sdk-browser.min.js"></script>
+<script>
+    // 初始化 Authing SDK for Web
+    const auth = new Authing({
+        clientId: '5c668c712e450b00017af455',
+        timestamp: Math.round(new Date() / 1000),
+        nonce: Math.ceil(Math.random() * Math.pow(10, 6)),
+    });
+
+    auth.then(function(authing) {
+        // 调用小程序扫码登录的方法，此方法将生成一个用于扫码登录的图片和相关提示信息
+        authing.startWXAppScaning({
+            // 不自动跳转
+            redirect: false,
+  
+            // 扫码成功
+            onSuccess(userInfo) {
+                alert('扫码成功，请打开控制台查看用户信息')
+
+                console.log(userInfo);
+                
+                // 存储 token 到 localStorage 中
+                localStorage.setItem('token', userInfo.token);
+            }
+        });
+    })
+</script>
+
+</body>
+</html>

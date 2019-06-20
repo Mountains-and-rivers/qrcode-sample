@@ -13,13 +13,14 @@
 </head>
 <body>
 
-<script src="https://cdn.jsdelivr.net/npm/authing-js-sdk@2.1.0/dist/authing-js-sdk-browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/authing-js-sdk@2.3.0/dist/authing-js-sdk-browser.min.js"></script>
 <script>
     // 初始化 Authing SDK for Web
     const auth = new Authing({
-        clientId: '5c668c712e450b00017af455',
+        clientId: '5d09f2cfe1a019136558f828',
         timestamp: Math.round(new Date() / 1000),
         nonce: Math.ceil(Math.random() * Math.pow(10, 6)),
+        useSelfWxapp: true,
     });
 
     auth.then(function(authing) {
